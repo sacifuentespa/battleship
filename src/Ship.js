@@ -1,10 +1,13 @@
 class Ship {
-    constructor(length, name){
+    constructor(length, name) {
+        
         if (!Number.isInteger(length) || length <= 0) {
             throw new Error('Length must be a positive integer.');
-          }
+        }
+        
         this.length = length;
-        switch(this.length){
+        
+        switch (this.length) {
             case 5:
                 this.name = "Carrier";
                 break;
@@ -16,20 +19,32 @@ class Ship {
                 break;
             default:
                 this.name = "Patrol Boat";
-        }    
+        }
+        
         this.hits = 0;
+
+        this.position = []
+
     }
 
-    hit(){
-        if(this.hits < this.length){
+    getHit(row,col) {
+        if (this.hits < this.length) {
             this.hits++;
         }
+
+        let cellHit = this.position.find(cell => (cell.row === row && cell.col === col));
+        cellHit.gotHit = true;
     }
 
-    isSunk(){
+    isSunk() {
         return this.hits >= this.length;
     }
 
+    place(cells) {
+        this.position = cells;
+      }
+
 }
+
 
 export default Ship;

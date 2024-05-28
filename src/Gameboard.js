@@ -1,7 +1,10 @@
+import Ship from "./Ship.js";
+
 class Gameboard {
     constructor() {
         this.GRID_SIZE = 10;
         this.grid = this.createGrid();
+        this.ships = []
     }
 
     createGrid() {
@@ -13,10 +16,10 @@ class Gameboard {
     }
 
     isValidPlacement(ship, row, col, horizontal) {
-        if (horizontal && col + ship.length > this.gridSize) {
+        if (horizontal && col + ship.length > this.GRID_SIZE) {
             return false;
         }
-        if (!horizontal && row + ship.length > this.gridSize) {
+        if (!horizontal && row + ship.length > this.GRID_SIZE) {
             return false;
         }
 
@@ -32,7 +35,7 @@ class Gameboard {
     }
 
     // horizontal being a boolean value true for horizontal, false for vertical
-    
+
     placeShip(ship, row, col, horizontal) {
         if (!this.isValidPlacement(ship, row, col, horizontal)) {
             return false;
@@ -42,21 +45,24 @@ class Gameboard {
         for (let i = 0; i < ship.length; i++) {
             if (horizontal) {
                 this.grid[row][col + i] = ship;
-                shipCells.push({ row, col: col + i });
+                shipCells.push({ row, col: col + i, gotHit: false });
             } else {
                 this.grid[row + i][col] = ship;
-                shipCells.push({ row: row + i, col });
+                shipCells.push({ row: row + i, col, gotHit: false });
             }
         }
-        
         // check placement
         ship.place(shipCells);
         this.ships.push(ship);
         return true;
     }
 
+    receiveAttack(row,col){
+        
+    }
 }
 
-let gridTest = new Gameboard;
 
-console.log(gridTest.grid);
+
+
+export default Gameboard;
