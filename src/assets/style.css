@@ -1,0 +1,19 @@
+:root{
+    --darkest: #03045e;
+    --darker: #0077b6;
+    --mid: #00b4d8;
+    --light: #90e0ef;
+    --lightest: #caf0f8;
+    font-size: large;
+}
+
+*{
+    box-sizing: border-box;
+    background-color: #0077b6;
+}
+
+
+
+h1{
+    color: var(--lightest);
+}

@@ -1,4 +1,4 @@
-import Ship from "../src/Ship";
+import Ship from "../src/gameLogic/Ship";
 
 test('The amount of hits for the starting ship is 0', () => {
     let testShip = new Ship(3);
@@ -37,7 +37,7 @@ test('The getHit method changes ship hits and gotHit property of ship.position c
         { row: 0, col: 2, gotHit: false }
     ];
     testShip.place(testCells);
-    testShip.getHit(0, 1);
+    expect(testShip.getHit(0, 1)).toBe("You hit my Destroyer"); // getHit returns the name of the boat hit
     expect(testShip.position[0]).toEqual({ row: 0, col: 0, gotHit: false });
     expect(testShip.position[1]).toEqual({ row: 0, col: 1, gotHit: true });
     expect(testShip.position[2]).toEqual({ row: 0, col: 2, gotHit: false });

@@ -1,10 +1,8 @@
-import Ship from "./Ship.js";
-
 class Gameboard {
     constructor() {
         this.GRID_SIZE = 10;
         this.grid = this.createGrid();
-        this.ships = []
+        this.ships = [];
     }
 
     createGrid() {
@@ -58,11 +56,36 @@ class Gameboard {
     }
 
     receiveAttack(row,col){
-        
+    // returns true if the cell contains a ship or if it has already been attacked
+    // This in order to make another attack if the function returns true within the game loop
+    // Check the idea in frontend implementation there is possible to remove the event 
+    // listener so the attacked positions cannot be selected
+        if(this.grid[row][col] === null){
+            this.grid[row][col] = 'attacked';
+            return false;
+        }
+        if(this.grid[row][col]==='attacked'){
+            console.log('This position was already attacked'); 
+            return true;
+        }
+
+        const ship = this.grid[row][col];
+        if(ship.position.find(cell => (cell.row === row && cell.col === col)).gotHit === false){
+            ship.getHit(row,col);
+            return true;
+        }
+
+        console.log("Ship already attacked");
+        return true;
+    }
+
+    areShipsSunk(){
+        if(this.ships.some(ship => !ship.isSunk())){
+            return false;
+        } 
+        return true;
     }
 }
-
-
 
 
 export default Gameboard;

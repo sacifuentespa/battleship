@@ -1,5 +1,5 @@
 class Ship {
-    constructor(length, name) {
+    constructor(length) {
         
         if (!Number.isInteger(length) || length <= 0) {
             throw new Error('Length must be a positive integer.');
@@ -23,7 +23,7 @@ class Ship {
         
         this.hits = 0;
 
-        this.position = []
+        this.position = [];
 
     }
 
@@ -34,6 +34,8 @@ class Ship {
 
         let cellHit = this.position.find(cell => (cell.row === row && cell.col === col));
         cellHit.gotHit = true;
+        return `You hit my ${this.name}`;
+        
     }
 
     isSunk() {
