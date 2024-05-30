@@ -1,4 +1,4 @@
-:root{
+:root {
     --darkest: #03045e;
     --darker: #0077b6;
     --mid: #00b4d8;
@@ -7,13 +7,54 @@
     font-size: large;
 }
 
-*{
+* {
     box-sizing: border-box;
     background-color: #0077b6;
 }
 
+body {
+    display:flex;
+    flex-direction: column;
+    height: 100vh;
+}
 
-
-h1{
+h1 {
     color: var(--lightest);
+}
+
+main {
+    display: flex;
+    flex:1;
+    width: 100%;
+    margin: 1em;
+}
+
+.ships {
+    width: 20%;
+}
+
+.boards {
+    display: flex;
+    width: 80%;
+    flex:1;
+}
+
+
+.boards>div {
+    margin: 1em;
+}
+
+
+.playerBoard,
+.oponentBoard {
+    display: grid;
+    box-sizing: border-box;
+}
+
+
+.square {
+    border: 1px solid;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }

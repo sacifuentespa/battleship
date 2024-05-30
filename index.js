@@ -1,4 +1,4 @@
-import Ship from "./src/gameLogic/Ship";
+import Ship from "./src/gameLogic/Ship.js";
 import Gameboard from "./src/gameLogic/Gameboard.js";
 import Player from "./src/gameLogic/Player.js";
 import drawBoard from "./src/frontManagement/drawBoard.js";
@@ -7,6 +7,8 @@ const playerBoard = document.querySelector('.playerBoard');
 const oponentBoard = document.querySelector('.oponentBoard');
 
 drawBoard(playerBoard);
+drawBoard(oponentBoard);
+
 
 const player1 = new Player("Human");
 const player2 = new Player("Computer");
