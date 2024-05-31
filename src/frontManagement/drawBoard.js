@@ -26,7 +26,7 @@ function drawBoard(board) {
             square.style.width = `${squareSize}px`;
             square.style.height = `${squareSize}px`;
 
-            square.id = `${row}${column}`;
+            square.id = `cell${row}${column}`;
             internBoard.appendChild(square);
         }
     }
