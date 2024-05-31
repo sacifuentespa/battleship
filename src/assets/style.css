@@ -4,7 +4,7 @@
     --mid: #00b4d8;
     --light: #90e0ef;
     --lightest: #caf0f8;
-    font-size: large;
+    --shipColor: #3D3B40;
 }
 
 * {
@@ -15,10 +15,13 @@
 body {
     display:flex;
     flex-direction: column;
-    height: 100vh;
+    height: 120vh;
+    align-items: center;
+    justify-content: center;
 }
 
 h1 {
+    margin-top: 1.5em;
     color: var(--lightest);
 }
 
@@ -31,12 +34,15 @@ main {
 
 .ships {
     width: 20%;
+    padding: 2em;
 }
 
 .boards {
     display: flex;
     width: 80%;
     flex:1;
+    align-items: center;
+    justify-content: space-evenly;
 }
 
 
@@ -44,9 +50,14 @@ main {
     margin: 1em;
 }
 
+.playerBoard, .oponentBoard{
+    display:flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
 
-.playerBoard,
-.oponentBoard {
+.internBoard{
     display: grid;
     box-sizing: border-box;
 }
@@ -57,4 +68,32 @@ main {
     display: flex;
     align-items: center;
     justify-content: center;
+}
+
+.shipDrawing{
+    display: flex;
+}
+
+.squareShip{
+    border: 2px solid;
+    background-color: var(--shipColor);
+}
+
+
+footer{
+    display:flex;
+    justify-content: center;
+    background-color: black;
+    color: white;
+    width: 100%;
+}
+
+a{
+    color: white;
+    text-decoration: none; 
+}
+
+a:visited {
+    color: white;
+    text-decoration: none;
 }

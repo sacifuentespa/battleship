@@ -1,11 +1,18 @@
-const GRID_SIZE = 10;
+import calculateSquareSize from "./calculateSquareSize.js";
 
+const GRID_SIZE = 10;
 
 function drawBoard(board) {
 
     const squareSize = calculateSquareSize();
-    board.style.width = `${squareSize * GRID_SIZE}`;
-    board.style.height = `${squareSize * GRID_SIZE}`;
+
+    const internBoard = document.createElement('div');
+    internBoard.classList.add('internBoard');
+    board.appendChild(internBoard);
+    
+
+    internBoard.style.width = `${squareSize * GRID_SIZE}`;
+    internBoard.style.height = `${squareSize * GRID_SIZE}`;
 
     for (let row = 0; row < GRID_SIZE; row++) {
         for (let column = 0; column < GRID_SIZE; column++) {
@@ -19,23 +26,15 @@ function drawBoard(board) {
             square.style.width = `${squareSize}px`;
             square.style.height = `${squareSize}px`;
 
-
             square.id = `${row}${column}`;
-            board.appendChild(square);
+            internBoard.appendChild(square);
         }
     }
     
-    board.style.gridTemplateColumns = `repeat(${GRID_SIZE}, ${squareSize}px)`;
-    board.style.gridTemplateRows = `repeat(${GRID_SIZE}, ${squareSize}px)`;
+    internBoard.style.gridTemplateColumns = `repeat(${GRID_SIZE}, ${squareSize}px)`;
+    internBoard.style.gridTemplateRows = `repeat(${GRID_SIZE}, ${squareSize}px)`;
 }
 
-function calculateSquareSize() {
-    const boards = document.querySelector('.boards');
-    const boardWidth = boards.clientWidth / (GRID_SIZE*2);
-    const boardHeight = boards.clientHeight / (GRID_SIZE*2);
-    const squareSize = Math.min(boardWidth, boardHeight);
-    return squareSize;
-}
 
 
 export default drawBoard; 
