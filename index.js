@@ -4,6 +4,7 @@ import Player from "./src/gameLogic/Player.js";
 import drawBoard from "./src/frontManagement/drawBoard.js";
 import drawShip from "./src/frontManagement/drawShip.js";
 import paintShipsAndHitsInBoards from "./src/frontManagement/paintShipsAndHitsInBoards.js";
+import hitOponentBoard from "./src/frontManagement/hitOponentBoard.js";
 
 const playerBoard = document.querySelector('.playerBoard');
 const oponentBoard = document.querySelector('.oponentBoard');
@@ -35,12 +36,11 @@ player1.gameboard.placeShip(destroyerOnePlayer1, 2,2, true);
 player1.gameboard.placeShip(destroyerTwoPlayer1, 3,3, true);
 player1.gameboard.placeShip(patrolBoatPlayer1, 4,4, true);
 
-let humanPlayerBoard = document.querySelector('.playerBoard');
 
-player1.gameboard.receiveAttack(0,0)
-player1.gameboard.receiveAttack(5,0)
+player1.gameboard.receiveAttack(0,0);
+player1.gameboard.receiveAttack(5,0);
 
-paintShipsAndHitsInBoards(player1.gameboard, humanPlayerBoard);
+paintShipsAndHitsInBoards(player1.gameboard, playerBoard);
 
 // ships for player 2
 const carrierPlayer2 = new Ship(5);
@@ -54,3 +54,13 @@ player2.gameboard.placeShip(battleshipPlayer2, 1,1, true);
 player2.gameboard.placeShip(destroyerOnePlayer2, 2,2, true);
 player2.gameboard.placeShip(destroyerTwoPlayer2, 3,3, true);
 player2.gameboard.placeShip(patrolBoatPlayer2, 4,4, true);
+
+player2.gameboard.receiveAttack(0,0);
+
+paintShipsAndHitsInBoards(player2.gameboard, oponentBoard);
+
+const oponentSquares = document.querySelectorAll('.oponentBoard .square');
+oponentSquares.forEach(square => square.addEventListener('click', (event) => {
+    hitOponentBoard(event, player2);
+    paintShipsAndHitsInBoards(player2.gameboard, oponentBoard);
+}));

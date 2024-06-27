@@ -60,6 +60,7 @@ class Gameboard {
     // This in order to make another attack if the function returns true within the game loop
     // Check the idea in frontend implementation there is possible to remove the event 
     // listener so the attacked positions cannot be selected
+    
         if(this.grid[row][col] === null){
             this.grid[row][col] = 'attacked';
             return false;
@@ -70,7 +71,9 @@ class Gameboard {
         }
 
         const ship = this.grid[row][col];
-        if(ship.position.find(cell => (cell.row === row && cell.col === col)).gotHit === false){
+        const shipCell = ship.position.find(cell => cell.row === row && cell.col === col);
+        if(shipCell && !shipCell.gotHit){
+            
             ship.getHit(row,col);
             return true;
         }

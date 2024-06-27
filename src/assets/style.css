@@ -72,6 +72,7 @@ main {
 
 .square p{
     font-weight: bolder;
+    background-color: inherit;
 }
 
 .shipDrawing{
